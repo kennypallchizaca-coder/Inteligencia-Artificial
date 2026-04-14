@@ -11,7 +11,7 @@
 | **Estudiante** | Alex Guaman |
 | **Asignatura** | Inteligencia Artificial / Machine Learning |
 | **Tema** | Analisis Exploratorio de Datos (EDA) |
-| **Dataset** | Heart Disease — UCI Machine Learning Repository |
+| **Dataset** | Titanic — Kaggle / Seaborn (891 obs. × 15 vars.) |
 
 ---
 
@@ -26,49 +26,45 @@
 ### Estructura del Proyecto
 
 ```
-PRACTICA-IA/
+PRACTICA-IA-2.0/
 |
 |-- data/
-|   +-- heart_disease.data              # Dataset de enfermedad cardiaca (UCI)
+|   +-- titanic.csv                          # Dataset de Titanic (Kaggle / Seaborn)
 |
 |-- notebooks/
-|   |-- 00_fundamentos_python.ipynb      # Fundamentos de Python
-|   +-- 01_analisis_exploratorio_datos.ipynb  # EDA principal
+|   |-- 00_fundamentos_python.ipynb          # Fundamentos de Python
+|   +-- 01_analisis_exploratorio_datos.ipynb # EDA principal (Titanic)
 |
-|-- reports/                             # Reportes y presentaciones
+|-- reports/
+|   +-- Presentacion_Resultados_EDA_MATRIX.pptx  # Presentacion final (10 slides)
 |
-|-- src/                                 # Codigo fuente auxiliar
+|-- src/                                     # Codigo fuente auxiliar
 |
-|-- requirements.txt                     # Dependencias del proyecto
-+-- README.md                            # Este archivo
+|-- requirements.txt                         # Dependencias del proyecto
++-- README.md                                # Este archivo
 ```
 
 ---
 
 ### Dataset Utilizado
 
-**Heart Disease Dataset** del repositorio UCI Machine Learning.
+**Titanic Dataset** — Kaggle / UCI Machine Learning Repository.
 
-- **Registros:** 303 pacientes
-- **Variables:** 14 atributos clinicos
-- **Variable objetivo:** Diagnostico de enfermedad cardiaca (multiclase transformada a binaria)
+- **Registros:** 891 pasajeros
+- **Variables:** 15 atributos demograficos, economicos y sociales
+- **Variable objetivo (Y):** `survived` — Diagostico binario de supervivencia
 
 | Variable | Descripcion |
 |---|---|
-| `edad` | Edad del paciente |
-| `sexo` | Sexo (0 = Femenino, 1 = Masculino) |
-| `tipo_dolor_pecho` | Tipo de dolor toracico (1-4) |
-| `presion_arterial_reposo` | Presion arterial en reposo (mm Hg) |
-| `colesterol` | Colesterol serico (mg/dl) |
-| `azucar_ayunas` | Azucar en sangre en ayunas > 120 mg/dl |
-| `electrocardiograma_reposo` | Resultados del ECG en reposo |
-| `frecuencia_cardiaca_max` | Frecuencia cardiaca maxima alcanzada |
-| `angina_ejercicio` | Angina inducida por el ejercicio |
-| `oldpeak` | Depresion del segmento ST |
-| `pendiente_st` | Pendiente del segmento ST |
-| `num_vasos` | Numero de vasos principales coloreados por fluoroscopia |
-| `tal` | Talasemia |
-| `objetivo` | Diagnostico (0 = sano, 1-4 = enfermo) |
+| `survived` | Variable objetivo: 0 = No sobrevivio, 1 = Sobrevivio |
+| `pclass` | Clase del boleto (1 = 1ra, 2 = 2da, 3 = 3ra) |
+| `sex` | Genero del pasajero |
+| `age` | Edad del pasajero (en anos) |
+| `sibsp` | Numero de hermanos/conyuges a bordo |
+| `parch` | Numero de padres/hijos a bordo |
+| `fare` | Tarifa del boleto pagada (en libras esterinas) |
+| `embarked` | Puerto de embarque (C=Cherbourg, Q=Queenstown, S=Southampton) |
+| `deck` | Cubierta del barco (descartada: 77.1% de nulos) |
 
 ---
 
@@ -79,14 +75,14 @@ El notebook `01_analisis_exploratorio_datos.ipynb` desarrolla las siguientes eta
 1. Carga y descripcion del dataset
 2. Exploracion inicial — dimensiones, tipos de datos, primeros registros
 3. Resumen estadistico descriptivo — media, desviacion estandar, percentiles
-4. Limpieza de datos — deteccion y tratamiento de valores faltantes (imputacion con mediana)
-5. Ingenieria de caracteristicas — creacion de variable `objetivo_binario`
+4. Limpieza de datos — valores faltantes (imputacion mediana/moda, eliminacion de `deck`)
+5. Ingenieria de caracteristicas — creacion de `family_size`, `is_alone`, `sex_encoded`
 6. Visualizacion de datos — histogramas, boxplots, graficos de barras
 7. Analisis de variables categoricas — tablas de frecuencia y tablas cruzadas
 8. Analisis de correlacion — matriz de correlacion con heatmap
 9. Identificacion de las 3 variables mas correlacionadas con la variable objetivo
 10. Analisis de outliers — deteccion formal mediante metodo IQR
-11. Segmentacion de datos — analisis por sexo y tipo de dolor de pecho
+11. Segmentacion de datos — analisis por sexo × clase y tamano de familia
 12. Generacion de hipotesis — 5 hipotesis basadas en los patrones observados
 13. Conclusiones finales — sintesis de hallazgos y proximos pasos
 
@@ -96,11 +92,12 @@ El notebook `01_analisis_exploratorio_datos.ipynb` desarrolla las siguientes eta
 
 | Libreria | Uso |
 |---|---|
-| Python 3.14+ | Lenguaje base |
+| Python 3.11+ | Lenguaje base |
 | Pandas | Manipulacion y analisis de datos |
 | NumPy | Operaciones numericas |
 | Matplotlib | Visualizacion de datos |
 | Seaborn | Visualizacion estadistica avanzada |
+| python-pptx | Generacion de presentaciones |
 
 ---
 
@@ -108,7 +105,7 @@ El notebook `01_analisis_exploratorio_datos.ipynb` desarrolla las siguientes eta
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/PRACTICA-IA.git
+git clone https://github.com/tu-usuario/PRACTICA-IA-2.0.git
 
 # 2. Crear entorno virtual
 python -m venv .venv
@@ -127,10 +124,10 @@ jupyter notebook notebooks/01_analisis_exploratorio_datos.ipynb
 
 ### Hallazgos Principales
 
-- **Factores de riesgo clave:** `frecuencia_cardiaca_max`, `oldpeak`, `tipo_dolor_pecho` y `angina_ejercicio` son los predictores mas fuertes de enfermedad cardiaca.
-- **Diferencias por sexo:** Los hombres presentan mayor proporcion de enfermedad cardiaca (55.61%) frente a las mujeres (25.77%).
-- **Tipo de dolor:** El tipo 4 (asintomatico) se asocia con la mayor tasa de enfermedad (72.92%).
-- **Outliers:** Se detectaron valores atipicos en variables clinicas, pero se conservan por su relevancia medica.
+- **Factor de mayor impacto:** El genero (`sex`) es el predictor mas fuerte. Las mujeres sobrevivieron en un 74.2% vs. hombres con solo un 18.9%.
+- **Desigualdad social:** Los pasajeros de 1ra clase sobrevivieron en un 62.9% vs. 24.2% en 3ra clase.
+- **Tarifa como proxy socioeconomico:** A mayor tarifa pagada, mayor probabilidad de supervivencia (correlacion r=+0.26).
+- **Outliers conservados:** Los valores extremos en `fare` (hasta 512£) representan pasajeros historicos verificables y se mantienen en el dataset.
 
 ---
 
