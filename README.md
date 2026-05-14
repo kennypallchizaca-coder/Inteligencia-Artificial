@@ -129,6 +129,24 @@ Actividades en clase:
 
 ---
 
+#### Practica 03 — Implementacion Manual de KNN (Nivel Principiante)
+
+**Notebook:** `03_practica_knn.ipynb` | **Dataset:** pacientes.csv
+
+Actividades desarrolladas:
+
+1. **Transformación simple:** Cambio de palabras a números (ciudad, colesterol, diabetes).
+2. **Estandarización básica:** Cálculo de media y desviación estándar para nivelar los datos.
+3. **Algoritmo KNN paso a paso:**
+   - Uso de bucles `for` para calcular distancias.
+   - Selección de los 3 vecinos más cercanos.
+   - Conteo de votos manual para la predicción.
+4. **Análisis de resultados:** Redacción de conclusiones finales sobre el modelo.
+
+**Herramientas:** Python básico, `Pandas`, librería `math`.
+
+---
+
 ### Tecnologias y Librerias
 
 | Libreria | Version | Uso |
