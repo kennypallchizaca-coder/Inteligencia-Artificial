@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="560" viewBox="0 0 1400 560" role="img" aria-labelledby="title desc">
+  <title id="title">Flujo de trabajo del modelo Naive Bayes</title>
+  <desc id="desc">Flujo desde el dataset CSV hasta la preparacion, division, escalamiento, entrenamiento Gaussian Naive Bayes, evaluacion y prediccion de nuevos samples.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#00ff41"/>
+    </marker>
+    <filter id="soft-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .bg { fill: #050806; }
+      .panel { fill: #0a0f0c; stroke: #00ff41; stroke-width: 2; rx: 18; }
+      .step { fill: #101820; stroke: #00ff41; stroke-width: 2.5; rx: 16; filter: url(#soft-glow); }
+      .step-alt { fill: #151515; stroke: #89ff9f; stroke-width: 2.2; rx: 16; }
+      .edge { stroke: #00ff41; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .title { font-family: "Consolas", "Courier New", monospace; fill: #00ff41; font-size: 34px; font-weight: 800; text-anchor: middle; }
+      .label { font-family: "Segoe UI", Arial, sans-serif; fill: #eaffef; font-size: 25px; font-weight: 700; text-anchor: middle; }
+      .small { font-family: "Segoe UI", Arial, sans-serif; fill: #b8ffc6; font-size: 18px; text-anchor: middle; }
+      .code { font-family: "Consolas", "Courier New", monospace; fill: #00ff41; font-size: 19px; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1400" height="560"/>
+  <rect class="panel" x="35" y="35" width="1330" height="490"/>
+  <text class="title" x="700" y="92">&gt; FLUJO DE MODELADO NAIVE BAYES</text>
+
+  <line class="edge" x1="225" y1="260" x2="310" y2="260"/>
+  <line class="edge" x1="470" y1="260" x2="555" y2="260"/>
+  <line class="edge" x1="715" y1="260" x2="800" y2="260"/>
+  <line class="edge" x1="960" y1="260" x2="1045" y2="260"/>
+  <line class="edge" x1="1125" y1="330" x2="1125" y2="386"/>
+
+  <g transform="translate(135 260)">
+    <rect class="step-alt" x="-90" y="-70" width="180" height="140"/>
+    <text class="label" y="-24">Dataset</text>
+    <text class="code" y="14">CSV local</text>
+    <text class="small" y="45">30 variables</text>
+  </g>
+
+  <g transform="translate(390 260)">
+    <rect class="step" x="-90" y="-70" width="180" height="140"/>
+    <text class="label" y="-24">Preparacion</text>
+    <text class="small" y="10">limpieza</text>
+    <text class="small" y="39">X / y</text>
+  </g>
+
+  <g transform="translate(635 260)">
+    <rect class="step-alt" x="-90" y="-70" width="180" height="140"/>
+    <text class="label" y="-24">Division</text>
+    <text class="code" y="14">80% / 20%</text>
+    <text class="small" y="45">estratificada</text>
+  </g>
+
+  <g transform="translate(880 260)">
+    <rect class="step" x="-90" y="-70" width="180" height="140"/>
+    <text class="label" y="-24">Pipeline</text>
+    <text class="small" y="9">StandardScaler</text>
+    <text class="small" y="39">GaussianNB</text>
+  </g>
+
+  <g transform="translate(1125 260)">
+    <rect class="step-alt" x="-90" y="-70" width="180" height="140"/>
+    <text class="label" y="-24">Evaluacion</text>
+    <text class="small" y="9">accuracy</text>
+    <text class="small" y="39">matriz confusion</text>
+  </g>
+
+  <g transform="translate(1125 455)">
+    <rect class="step" x="-140" y="-55" width="280" height="110"/>
+    <text class="label" y="-12">Nuevos samples</text>
+    <text class="small" y="24">prediccion y probabilidades</text>
+  </g>
+</svg>

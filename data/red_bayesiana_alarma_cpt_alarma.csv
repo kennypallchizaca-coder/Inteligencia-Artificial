@@ -1,0 +1,5 @@
+Robo,Terremoto,P_Alarma_Si,P_Alarma_No
+Si,Si,0.95,0.05
+Si,No,0.94,0.06
+No,Si,0.29,0.71
+No,No,0.001,0.999

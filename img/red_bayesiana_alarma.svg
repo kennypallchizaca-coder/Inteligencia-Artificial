@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+  <title id="title">Red Bayesiana del sistema de alarma</title>
+  <desc id="desc">Diagrama de una red bayesiana con Robo y Terremoto como causas de Alarma, y Alarma como causa de las llamadas de John y Maria.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#00ff41"/>
+    </marker>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .bg { fill: #050806; }
+      .panel { fill: #0a0f0c; stroke: #00ff41; stroke-width: 2; rx: 18; }
+      .node { fill: #101820; stroke: #00ff41; stroke-width: 3; filter: url(#glow); }
+      .node-secondary { fill: #151515; stroke: #89ff9f; stroke-width: 2.5; }
+      .edge { stroke: #00ff41; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .label { font-family: "Segoe UI", Arial, sans-serif; fill: #eaffef; font-size: 28px; font-weight: 700; text-anchor: middle; }
+      .code { font-family: "Consolas", "Courier New", monospace; fill: #00ff41; font-size: 24px; font-weight: 700; text-anchor: middle; }
+      .small { font-family: "Segoe UI", Arial, sans-serif; fill: #b8ffc6; font-size: 20px; text-anchor: middle; }
+      .caption { font-family: "Segoe UI", Arial, sans-serif; fill: #d7ffdd; font-size: 22px; text-anchor: middle; }
+      .title { font-family: "Consolas", "Courier New", monospace; fill: #00ff41; font-size: 34px; font-weight: 800; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="640"/>
+  <rect class="panel" x="35" y="35" width="1130" height="570"/>
+  <text class="title" x="600" y="92">&gt; RED BAYESIANA: SISTEMA DE ALARMA</text>
+  <text class="caption" x="600" y="126">Las conexiones indican dependencia probabilistica entre variables.</text>
+
+  <line class="edge" x1="320" y1="230" x2="510" y2="312"/>
+  <line class="edge" x1="320" y1="430" x2="510" y2="348"/>
+  <line class="edge" x1="700" y1="312" x2="888" y2="230"/>
+  <line class="edge" x1="700" y1="348" x2="888" y2="430"/>
+
+  <g transform="translate(220 230)">
+    <circle class="node-secondary" r="95"/>
+    <text class="label" y="-18">Robo</text>
+    <text class="code" y="20">(B)</text>
+    <text class="small" y="55">Si / No</text>
+  </g>
+
+  <g transform="translate(220 430)">
+    <circle class="node-secondary" r="95"/>
+    <text class="label" y="-18">Terremoto</text>
+    <text class="code" y="20">(E)</text>
+    <text class="small" y="55">Si / No</text>
+  </g>
+
+  <g transform="translate(600 330)">
+    <circle class="node" r="105"/>
+    <text class="label" y="-20">Alarma</text>
+    <text class="code" y="22">(A)</text>
+    <text class="small" y="60">Si / No</text>
+  </g>
+
+  <g transform="translate(980 230)">
+    <circle class="node-secondary" r="95"/>
+    <text class="label" y="-18">John llama</text>
+    <text class="code" y="20">(J)</text>
+    <text class="small" y="55">Si / No</text>
+  </g>
+
+  <g transform="translate(980 430)">
+    <circle class="node-secondary" r="95"/>
+    <text class="label" y="-18">Maria llama</text>
+    <text class="code" y="20">(M)</text>
+    <text class="small" y="55">Si / No</text>
+  </g>
+
+  <text class="caption" x="410" y="244">B -> A</text>
+  <text class="caption" x="410" y="425">E -> A</text>
+  <text class="caption" x="790" y="244">A -> J</text>
+  <text class="caption" x="790" y="425">A -> M</text>
+</svg>
